@@ -1,0 +1,13 @@
+C:\kod\c#\slutProjekt\slutProjekt\bin\Debug\netcoreapp3.1\slutProjekt.exe
+C:\kod\c#\slutProjekt\slutProjekt\bin\Debug\netcoreapp3.1\slutProjekt.deps.json
+C:\kod\c#\slutProjekt\slutProjekt\bin\Debug\netcoreapp3.1\slutProjekt.runtimeconfig.json
+C:\kod\c#\slutProjekt\slutProjekt\bin\Debug\netcoreapp3.1\slutProjekt.runtimeconfig.dev.json
+C:\kod\c#\slutProjekt\slutProjekt\bin\Debug\netcoreapp3.1\slutProjekt.dll
+C:\kod\c#\slutProjekt\slutProjekt\bin\Debug\netcoreapp3.1\slutProjekt.pdb
+C:\kod\c#\slutProjekt\slutProjekt\obj\Debug\netcoreapp3.1\slutProjekt.csprojAssemblyReference.cache
+C:\kod\c#\slutProjekt\slutProjekt\obj\Debug\netcoreapp3.1\slutProjekt.AssemblyInfoInputs.cache
+C:\kod\c#\slutProjekt\slutProjekt\obj\Debug\netcoreapp3.1\slutProjekt.AssemblyInfo.cs
+C:\kod\c#\slutProjekt\slutProjekt\obj\Debug\netcoreapp3.1\slutProjekt.csproj.CoreCompileInputs.cache
+C:\kod\c#\slutProjekt\slutProjekt\obj\Debug\netcoreapp3.1\slutProjekt.dll
+C:\kod\c#\slutProjekt\slutProjekt\obj\Debug\netcoreapp3.1\slutProjekt.pdb
+C:\kod\c#\slutProjekt\slutProjekt\obj\Debug\netcoreapp3.1\slutProjekt.genruntimeconfig.cache
