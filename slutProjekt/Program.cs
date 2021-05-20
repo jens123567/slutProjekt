@@ -7,15 +7,19 @@ namespace slutProjekt
         static void Main(string[] args)
         {
 
-            //programet presenteras
+            //programet presenteras med en nedräkning
+            for (int i = 3; i > 0; i--)
+            {
+                Console.WriteLine(i);
+            }
             Console.WriteLine("Hej och välkommen till detta berättelse spel");
 
             string spelaAvsluta = "";
 
 
-            //muvudmeny visas
+            //huvudmeny visas
             huvudMeny();
-            spelaAvsluta = kontrolleraSvar("2");
+            spelaAvsluta = kontrolleraSvar(2);
             Console.WriteLine("");
 
             //loop som allt ligger i
@@ -27,8 +31,9 @@ namespace slutProjekt
                 string dittNamn = "";
                 string föremål = "";
                 string plats = "";
-                string antalSvar = "2";
+                int antalSvar = 2;
 
+                //fyll i namn
                 Console.WriteLine("Skriv in ditt namn");
                 dittNamn = Console.ReadLine();
                 Console.WriteLine("");
@@ -37,7 +42,7 @@ namespace slutProjekt
                 scen1();
                 string tillScen2 = kontrolleraSvar(antalSvar);
                 Console.WriteLine("");
-                antalSvar = "4";
+                antalSvar = 4;
 
                 // scen 2
                 switch (tillScen2)
@@ -58,7 +63,7 @@ namespace slutProjekt
                         break;
                 }
                 Console.WriteLine("");
-                antalSvar = "2";
+                antalSvar = 2;
 
 
                 //scen 3
@@ -125,6 +130,7 @@ namespace slutProjekt
                 spelaAvsluta = kontrolleraSvar(antalSvar);
             }
         }
+        //huvudmenyn
         static void huvudMeny()
         {
             Console.WriteLine("Välj ett alternativ");
@@ -132,10 +138,12 @@ namespace slutProjekt
             Console.WriteLine("2. Avsluta");
         }
 
-        static string kontrolleraSvar(string antalSvar)
+        //kontrollerar svar
+        static string kontrolleraSvar(int antalSvarIn)
         {
             string svar = "";
             string rättEllerFel = "";
+            string antalSvar = antalSvarIn.ToString();
 
             while (rättEllerFel != "1")
             {
@@ -167,6 +175,7 @@ namespace slutProjekt
 
         }
 
+        //scen 1
         static void scen1()
         {
             Console.WriteLine("Person 1: Då är det dags");
@@ -177,6 +186,7 @@ namespace slutProjekt
             Console.WriteLine("2. Du försöker snabbt slänga ihop en presentation");
         }
 
+        //scen 2.1
         static void scen21()
         {
             Console.WriteLine("Du: Så jag tänkte att vi kanske kunde flytta min presentation till en annan dag?");
@@ -186,6 +196,7 @@ namespace slutProjekt
             Console.WriteLine("3. Du lämnar rummer");
         }
 
+        //scen 2.2
         static void scen22(string dittNamn)
         {
             Console.WriteLine("Du sitter stressad och gör din presentation, det börjar närma sig din tur");
@@ -197,6 +208,7 @@ namespace slutProjekt
             Console.WriteLine("4. Du begår ett krigsbrott");
         }
 
+        //scen 3.1
         static string scen31()
         {
             Console.WriteLine("Person 1: Hej, det är ingen fara");
@@ -211,6 +223,7 @@ namespace slutProjekt
             return föremål;
         }
 
+        //scen 3.2
         static string scen32()
         {
             Console.WriteLine("Du står och presenterar du gör ditt bästa");
@@ -224,6 +237,7 @@ namespace slutProjekt
             return föremål;
         }
 
+        //scen 3.3
         static string scen33()
         {
             Console.WriteLine("*Du lämnar rummet*");
@@ -240,6 +254,7 @@ namespace slutProjekt
             return föremål;
         }
 
+        //scen 3.4
         static string scen34()
         {
             Console.WriteLine("Alla är i skräck när dom ser dig dra fram en...");
@@ -252,11 +267,13 @@ namespace slutProjekt
             return föremål;
         }
 
+        //slutscenen scenario 1, gick bra
         static void slutScen1(string dittNamn, string föremål)
         {
             Console.WriteLine($"Person 1: {dittNamn}, tack vare att du använde en {föremål} så ger jag dig högsta betyg på din presentation");
         }
 
+        //slutscen scenario 2, gick dåligr
         static void slutScen2(string dittNamn, string föremål, string plats)
         {
             Console.WriteLine($"*Du sitter i {plats}*, pågrund av att du använde {föremål} så kan du inte längre få hålla presentationen");
