@@ -133,9 +133,12 @@ namespace slutProjekt
         //huvudmenyn
         static void huvudMeny()
         {
-            Console.WriteLine("Välj ett alternativ");
-            Console.WriteLine("1. Starta spelet");
-            Console.WriteLine("2. Avsluta");
+            string[] huvudmeny = new string[] { "Välj ett alternativ", "1. Starta spelet", "2. Avsluta" };
+
+            foreach (string item in huvudmeny)
+            {
+                Console.WriteLine(item);
+            }
         }
 
         //kontrollerar svar
@@ -178,12 +181,14 @@ namespace slutProjekt
         //scen 1
         static void scen1()
         {
-            Console.WriteLine("Person 1: Då är det dags");
-            Console.WriteLine("Du: Dags för vad?");
-            Console.WriteLine("Person 1: Presentationen");
-            Console.WriteLine("*Du inser att du inte har gjort presentationen*");
-            Console.WriteLine("1. Du försöker förhandla för att göra presentationen en annan dag");
-            Console.WriteLine("2. Du försöker snabbt slänga ihop en presentation");
+
+            string[] scen = new string[] { "Person 1: Då är det dags", "Du: Dags för vad?", "Person 1: Presentationen", "*Du inser att du inte har gjort presentationen*", "1. Du försöker förhandla för att göra presentationen en annan dag", "2. Du försöker snabbt slänga ihop en presentation" };
+
+            foreach (string item in scen)
+            {
+                Console.WriteLine(item);
+            }
+
         }
 
         //scen 2.1
