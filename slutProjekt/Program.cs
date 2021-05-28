@@ -14,12 +14,15 @@ namespace slutProjekt
             }
             Console.WriteLine("Hej och välkommen till detta berättelse spel");
 
+            //Deklarera variabel för spela eller avsluta för whileloopen
             string spelaAvsluta = "";
 
 
             //huvudmeny visas
             huvudMeny();
+            //läser in svar
             spelaAvsluta = kontrolleraSvar(2);
+            //blankrad
             Console.WriteLine("");
 
             //loop som allt ligger i
@@ -33,124 +36,229 @@ namespace slutProjekt
                 string plats = "";
                 int antalSvar = 2;
 
+                //ber användaren om en onödig siffra som kontrolleras med tryparese
+                användTryParse();
+
                 //fyll i namn
+                //ber om namn
                 Console.WriteLine("Skriv in ditt namn");
+                //läser in namn
                 dittNamn = Console.ReadLine();
+                //blankrad
                 Console.WriteLine("");
 
                 //scen 1 presenteras med två val
                 scen1();
+                //läser in svar
                 string tillScen2 = kontrolleraSvar(antalSvar);
+                //blankrad
                 Console.WriteLine("");
-                antalSvar = 4;
 
-                // scen 2
-                switch (tillScen2)
-                {
-                    //scen 2.1 presenteras med ytterligare tre val
-                    case "1":
-                        scen21();
-                        tillScen3 = kontrolleraSvar(antalSvar);
-                        break;
-
-                    //scen 2.2 presenteras med ytterligare fyra val
-                    case "2":
-                        scen22(dittNamn);
-                        tillScen3 = kontrolleraSvar(antalSvar);
-                        break;
-
-                    default:
-                        break;
-                }
+                //scen2
+                tillScen3 = scen2Swtich(tillScen2, dittNamn);
+                //blankrad
                 Console.WriteLine("");
+                //sätter antalsvar till 2
                 antalSvar = 2;
 
 
                 //scen 3
-                switch (tillScen3)
-                {
-                    //scen 3.1 presenteras med ytterligare två val
-                    case "1":
-                        föremål = scen31();
-                        tillSlutscen = kontrolleraSvar(antalSvar);
-
-                        plats = "rektorns rum";
-                        break;
-
-                    //scen 3.2 presenteras med ytterligare två val
-                    case "2":
-                        föremål = scen32();
-                        tillSlutscen = kontrolleraSvar(antalSvar);
-
-                        plats = "person 1s lägenhet";
-                        break;
-
-                    //scen 3.3 presenteras med ytterligare två val
-                    case "3":
-                        föremål = scen33();
-                        tillSlutscen = kontrolleraSvar(antalSvar);
-
-                        plats = "polishuset";
-                        break;
-
-                    //scen 3.4 presenteras med ytterligare två val
-                    case "4":
-                        föremål = scen34();
-                        tillSlutscen = kontrolleraSvar(antalSvar);
-
-                        plats = "Internationella brottsdomstolen i haag";
-                        break;
-
-                    default:
-                        break;
-                }
+                //tar tillbaka en array med data från scen 3
+                string[] scenTreData = scen3Switch(tillScen3);
+                // plockar ut varje variabel ur arrayen
+                föremål = scenTreData[0];
+                tillSlutscen = scenTreData[1];
+                plats = scenTreData[2];
+                //blankrad
                 Console.WriteLine("");
 
-                //alternativen leder tillbaka till en avslutande händelse och sammanfattning
-                switch (tillSlutscen)
-                {
-                    //du lyckades
-                    case "1":
-                        slutScen1(dittNamn, föremål);
-                        break;
-
-                    //du misslyckades
-                    case "2":
-                        slutScen2(dittNamn, föremål, plats);
-                        break;
-
-                    default:
-                        break;
-                }
+                //slutscen
+                slutScenSwitch(tillSlutscen, dittNamn, föremål, plats);
+                //blankrad
                 Console.WriteLine("");
 
                 //huvudmeny igen val att börja om eller stänga programmet
                 Console.WriteLine("spelet är slut vill du spela igen?");
                 huvudMeny();
+                //läser in svaret
                 spelaAvsluta = kontrolleraSvar(antalSvar);
             }
         }
+
+        //använd tryparse
+        static void användTryParse()
+        {
+            //ber om siffra
+            Console.WriteLine("skriv en siffra");
+            //variabel för siffran
+            int siffra;
+            //kontrollerar så att det är en siffra
+            while (int.TryParse(Console.ReadLine(), out siffra) == false)
+            {
+                Console.WriteLine("du skrev ingen siffra skriv en siffra");
+            }
+            //förklarar vad som skett
+            Console.WriteLine($"din siffra är {siffra}");
+            Console.WriteLine("denna siffra spelar ingen roll framöver");
+            Console.WriteLine("tack för att du spelar");
+        }
+
         //huvudmenyn
         static void huvudMeny()
         {
+            //aray med de olika alternativen
             string[] huvudmeny = new string[] { "Välj ett alternativ", "1. Starta spelet", "2. Avsluta" };
 
+            //loopar igenom dem och skriver ut dem efter varandra
             foreach (string item in huvudmeny)
             {
                 Console.WriteLine(item);
             }
         }
 
+        //switch för scen 2
+        /// <summary>
+        /// switch för scen 2
+        /// </summary>
+        /// <param name="tillScen2">till switchen i scen 2</param>
+        /// <param name="dittNamn">användarens namn </param>
+        /// <returns></returns>
+        static string scen2Swtich(string tillScen2, string dittNamn)
+        {
+            //deklarerar variabel för senare användning
+            string tillScen3 = "";
+
+            // scen 2
+            switch (tillScen2)
+            {
+                //scen 2.1 presenteras med ytterligare fyra val
+                case "1":
+                    scen21();
+                    tillScen3 = kontrolleraSvar(4);
+                    break;
+
+                //scen 2.2 presenteras med ytterligare fyra val
+                case "2":
+                    scen22(dittNamn);
+                    tillScen3 = kontrolleraSvar(4);
+                    break;
+
+                default:
+                    break;
+
+            }
+            //returnerar svaret till switchen i nästa scenario
+            return tillScen3;
+
+        }
+
+        //scen 3 switch
+        /// <summary>
+        /// switch för scen 3
+        /// </summary>
+        /// <param name="tillScen3">används i switchen för scen 3</param>
+        /// <returns></returns>
+        static string[] scen3Switch(string tillScen3)
+        {
+            //deklarera variabler
+            string tillSlutscen = "";
+            string föremål = "";
+            string plats = "";
+
+            //switchen
+            switch (tillScen3)
+            {
+                //scen 3.1 presenteras med ytterligare två val
+                case "1":
+                    föremål = scen31();
+                    tillSlutscen = kontrolleraSvar(2);
+
+                    //olika platser för varje val
+                    plats = "rektorns rum";
+                    break;
+
+                //scen 3.2 presenteras med ytterligare två val
+                case "2":
+                    föremål = scen32();
+                    tillSlutscen = kontrolleraSvar(2);
+
+                    //olika platser för varje val
+                    plats = "person 1s lägenhet";
+                    break;
+
+                //scen 3.3 presenteras med ytterligare två val
+                case "3":
+                    föremål = scen33();
+                    tillSlutscen = kontrolleraSvar(2);
+
+                    //olika platser för varje val
+                    plats = "polishuset";
+                    break;
+
+                //scen 3.4 presenteras med ytterligare två val
+                case "4":
+                    föremål = scen34();
+                    tillSlutscen = kontrolleraSvar(2);
+
+                    //olika platser för varje val
+                    plats = "Internationella brottsdomstolen i haag";
+                    break;
+
+                default:
+                    break;
+            }
+
+            //gör en array som kan returneras
+            string[] array = new string[] { föremål, tillSlutscen, plats };
+
+            //returnerar array
+            return array;
+
+        }
+
+        //slutscen
+        /// <summary>
+        /// slutscenen
+        /// </summary>
+        /// <param name="tillSlutscen">används i switchen</param>
+        /// <param name="dittNamn">användarens namn</param>
+        /// <param name="föremål">ett föremål som användaren har skrivit in</param>
+        /// <param name="plats">platsen där handlingen sker</param>
+        static void slutScenSwitch(string tillSlutscen, string dittNamn, string föremål, string plats)
+        {
+            //alternativen leder tillbaka till en avslutande händelse och sammanfattning
+            switch (tillSlutscen)
+            {
+                //du lyckades
+                case "1":
+                    slutScen1(dittNamn, föremål);
+                    break;
+
+                //du misslyckades
+                case "2":
+                    slutScen2(dittNamn, föremål, plats);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
         //kontrollerar svar
         static string kontrolleraSvar(int antalSvarIn)
         {
+
+            //deklarerar variabler
             string svar = "";
             string rättEllerFel = "";
+            //typkonvertering
             string antalSvar = antalSvarIn.ToString();
 
             while (rättEllerFel != "1")
             {
+                //läser in användarens svar
                 svar = Console.ReadLine();
+                //om det finns två svar
                 if (antalSvar == "2")
                 {
                     if (svar == "1" || svar == "2")
@@ -159,9 +267,10 @@ namespace slutProjekt
                     }
                     else
                     {
-                        Console.WriteLine("felaktigt alternativ, försök igen");
+                        Console.WriteLine("felaktigt alternativ, tryck på antingen '1' eller '2' på tangentbordet");
                     }
                 }
+                //om det finns fyra svar
                 else if (antalSvar == "4")
                 {
                     if (svar == "1" || svar == "2" || svar == "3" || svar == "4")
@@ -170,10 +279,11 @@ namespace slutProjekt
                     }
                     else
                     {
-                        Console.WriteLine("felaktigt alternativ, försök igen");
+                        Console.WriteLine("felaktigt alternativ, tryck på antingen '1', '2', '3' eller '4' på tangentbordet");
                     }
                 }
             }
+            //returnerar svar
             return svar;
 
         }
@@ -199,6 +309,7 @@ namespace slutProjekt
             Console.WriteLine("1. Du bryter ihop och börjar gråta");
             Console.WriteLine("2. Du accepterar svaret och försöker göra en presentation");
             Console.WriteLine("3. Du lämnar rummer");
+            Console.WriteLine("4. Du begår ett krigsbrott");
         }
 
         //scen 2.2
@@ -278,7 +389,7 @@ namespace slutProjekt
             Console.WriteLine($"Person 1: {dittNamn}, tack vare att du använde en {föremål} så ger jag dig högsta betyg på din presentation");
         }
 
-        //slutscen scenario 2, gick dåligr
+        //slutscen scenario 2, gick dåligt
         static void slutScen2(string dittNamn, string föremål, string plats)
         {
             Console.WriteLine($"*Du sitter i {plats}*, pågrund av att du använde {föremål} så kan du inte längre få hålla presentationen");
